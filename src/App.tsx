@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { ThemeProvider } from './contexts/ThemeContext'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { MainPage } from './pages/main/main'
+import { SettingsPage } from './pages/settings/settings'
+import { GamePage } from './pages/game/game'
+import { LanguageProvider } from './contexts/LanguageContext'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <LanguageProvider>
+      <ThemeProvider>
+        <Router>
+          <div className='app'>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/game" element={<GamePage />} />
+            </Routes>
+          </div>
+        </Router>
+      </ThemeProvider>
+    </LanguageProvider>
   )
 }
 

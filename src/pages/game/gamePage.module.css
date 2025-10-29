@@ -1,0 +1,42 @@
+.gamePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 96px;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.playerBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: -20px;
+}
+
+.winnerModal {
+    font: var(--font-xl);
+    color: var(--primary-color);
+    font-weight: 700;
+    text-align: center;
+}
+
+.headerPage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    background: transparent;
+    z-index: 10;
+}
+
+.vsText {
+    font: var(--font-xl);
+    font-weight: 600;
+    color: var(--secondary-color);
+}

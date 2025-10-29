@@ -1,0 +1,59 @@
+.settingsPage {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.playerSettingsBlock {
+    display: flex;
+    gap: 96px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    color: var(--text-primary-color);
+    font: var(--font-l);
+}
+
+.playerSetting {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Ensure headings inside player settings match the interface settings header */
+.playerSetting h3 {
+    font: var(--font-l);
+    margin: 0;
+}
+
+.additionalSettings {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
+
+.interfaceSettings {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+}
+
+.interfaceSettingsHeader {
+    font: var(--font-l);
+    margin: 0;
+}
+
+.buttonsBlock {
+    display: flex;
+    gap: 48px;
+}
+
+.aiSettings {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}

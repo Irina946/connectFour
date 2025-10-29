@@ -1,0 +1,65 @@
+.selectBlock {
+    display: flex;
+    gap: 6px;
+    justify-content: space-between;
+    width: 500px;
+    position: relative;
+}
+
+.selectLabel {
+    font: var(--font-l);
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--secondary-color);
+    background: var(--bg-color);
+    color: var(--text-primary-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 220px;
+}
+
+.selectOption {
+    color: inherit;
+    font: inherit;
+    background: var(--bg-color);
+
+}
+
+/* custom arrow */
+.selectBlock::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--secondary-color);
+    pointer-events: none;
+}
+
+/* hover state for options in dropdown (browser support varies) */
+.selectOption:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* selected option color (may be honored by some browsers) */
+.selectOption:checked,
+.selectOption[selected] {
+    color: var(--text-primary-color);
+    background: var(--primary-color);
+}
+
+/* hover on the select itself: accent border */
+.select:hover {
+    border-color: var(--primary-color);
+}

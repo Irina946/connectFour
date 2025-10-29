@@ -1,0 +1,96 @@
+.player {
+    font: var(--font-l);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.playerName {
+    color: var(--text-primary-color);
+}
+
+.locationRight {
+    flex-direction: row-reverse;
+}
+
+.locationLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 500px;
+    color: var(--text-primary-color);
+
+}
+
+.headerPlayer {
+    font: var(--font-xl);
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.headerColor {
+    font: var(--font-l);
+}
+
+.trickList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    max-width: 280px;
+}
+
+.colorTile {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 4px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.colorTile:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+}
+
+.selected {
+    border-color: var(--secondary-color);
+}
+
+.disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    background: var(--bg-color-opacity);
+}
+
+.note {
+    font-size: var(--font-size-s);
+    color: var(--text-secondary-color);
+}
+
+.active {
+    box-shadow: 0 0 0 3px var(--secondary-color);
+    border-radius: 8px;
+    background: var(--bg-board-color);
+    padding: var(--padding-board-s);
+}
+
+.score {
+    font: var(--font-xl);
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.playerContainer {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}

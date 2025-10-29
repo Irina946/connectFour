@@ -1,0 +1,22 @@
+.inputBlock {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font: var(--font-l);
+    
+}
+
+.input {
+    display: block;
+    border: none;
+    background-color: var(--bg-board-color);
+    padding: 4px 8px;
+    width: 150px;
+    font: var(--font-m);
+    color: var(--text-primary-color);
+}
+
+.input::placeholder {
+        font: var(--font-m);
+        color: var(--text-secondary-color);
+    }

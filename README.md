@@ -1,30 +1,86 @@
-# React + TypeScript + Vite
+# Connect Four Game / Игра "4 в ряд"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Содержание
 
-Currently, two official plugins are available:
+- [О проекте](#о-проекте)
+- [Установка проекта](#установка-проекта)
+- [Сильные стороны решения](#сильные-стороны-решения)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## О проекте
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**Веб-версия классической игры "Четыре в ряд"** с режимом игры против компьютера, полной кастомизацией интерфейса и многоязычностью.
 
-- Configure the top-level `parserOptions` property like this:
+## Установка проекта
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### 1. Клонирование репозитория
+
+```bash
+git clone https://github.com/Irina946/connectFour.git
+cd connectFour
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 2. Установка зависимостей
+
+```bash
+npm install
+```
+
+### 3. Запуск dev-сервера
+
+```bash
+npm run dev
+```
+
+Приложение будет доступно по адресу `http://localhost:5173`
+
+
+## Сильные стороны решения
+
+### Производительность и оптимизация
+
+- Все компоненты обернуты в `React.memo` с custom comparators
+- Использование `useCallback` для всех обработчиков событий
+- `useMemo` для всех вычисляемых значений
+
+
+### Компьютер противник
+
+- **Easy**: Случайные ходы
+- **Medium**: Эвристический анализ с приоритетами:
+    - Немедленная победа
+    - Блокировка победы противника
+    - Создание угроз (троек)
+    - Контроль центра
+- **Hard**: Эвристический алгоритм с приоритетной оценкой позиций:
+    - Threat Detection (обнаружение угроз)
+    - Safety Check (предотвращение ловушек)
+    - Window Scoring (оценка всех возможных комбинаций)
+    - Adaptive Strategy (разное поведение в начале/конце игры)
+
+### Плавные CSS-анимации без блокировки UI
+
+### Интернационализация - **Система переводов i18next**
+
+- Разделение по namespace (translation, game, settings)
+- Ленивая загрузка переводов
+- Автосохранение выбранного языка
+- Поддержка interpolation для динамического текста
+
+### **Чистая архитектура и типизация**
+
+- 100% TypeScript без `any`
+- Кастомные хуки для переиспользования логики
+- Context API для глобального состояния
+- Разделение бизнес-логики и UI
+
+
+### **Сохранение в localStorage**
+
+- Автосохранение игры при перезагрузке
+- Кастомный хук `useLocalStorage` с типизацией
+- Сохранение всех настроек пользователя
+
+
+
+

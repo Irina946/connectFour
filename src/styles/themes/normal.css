@@ -1,0 +1,12 @@
+.appLightTheme {
+    --bg-color: #F5F2E8;
+    --bg-board-color: #FBE198;
+    --bg-trick-color-one: #F84D4D;
+    --bg-trick-color-two: #F8B84D;
+    --bg-trick-color-three: #F8F84D;
+    --bg-trick-color-four: #B8F84D;
+    --bg-trick-color-five: #4DF84D;
+    --bg-trick-color-six: #4DF8F8;
+    --bg-trick-color-seven: #4DF8B8;
+    --bg-trick-color-eight: #f84df2;
+}

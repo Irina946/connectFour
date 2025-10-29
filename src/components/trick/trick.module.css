@@ -1,0 +1,6 @@
+.trick {
+    background-color: var(--bg-trick-color-one);
+    border-radius: 100%;
+    width: var(--chip-size-xl);
+    height: var(--chip-size-xl);
+}
