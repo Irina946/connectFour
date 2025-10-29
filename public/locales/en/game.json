@@ -25,5 +25,8 @@
     "fuchsia": "Fuchsia",
     "pink": "Pink",
     "silver": "Silver",
-    "black": "Black"
+    "black": "Black",
+    "Играть снова": "Play again",
+    "Ничья!": "Draw!",
+    "Все ячейки заполнены, победителя нет": "All cells are filled, no winner"
 }

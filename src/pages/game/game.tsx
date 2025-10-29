@@ -45,10 +45,11 @@ export const GamePage = () => {
         return (COLORS_TRICKS as Record<string, string>)[key] ?? key;
     }, [player2ColorKey]);
 
-    const { board, currentPlayer, winner, dropDisc, resetGame, winningPositions } = useConnectFour(
+    const { board, currentPlayer, winner, dropDisc, resetGame, winningPositions, isDraw } = useConnectFour(
         aiEnabled ?? false,
         (aiDifficulty as Difficulty) ?? 'medium'
     );
+
     const [player1Wins, setPlayer1Wins] = useLocalStorage<number>('player1Wins', 0);
     const [player2Wins, setPlayer2Wins] = useLocalStorage<number>('player2Wins', 0);
 
@@ -58,6 +59,9 @@ export const GamePage = () => {
         resetGame();
         player1TimerRef.current?.reset();
         player2TimerRef.current?.reset();
+        processedWinnerRef.current = null;
+        setWinReason('standart');
+        setTimeoutPlayer(null);
     }, [setPlayer1Wins, setPlayer2Wins, resetGame]);
 
     useEffect(() => {
@@ -72,58 +76,54 @@ export const GamePage = () => {
 
     const handlePlayer1TimeUp = useCallback(() => {
         if (!winner) {
-            // Игрок 1 проиграл по времени
             setPlayer2Wins((prev) => ((prev ?? 0) + 1));
             setWinReason('time');
             setTimeoutPlayer(player1Name ?? 'player_1');
-            resetGame();
         }
-    }, [winner, player1Name, setPlayer2Wins, setWinReason, setTimeoutPlayer, resetGame]);
+    }, [winner, player1Name, setPlayer2Wins]);
 
     const handlePlayer2TimeUp = useCallback(() => {
         if (!winner) {
-            // Игрок 2 проиграл по времени
             setPlayer1Wins((prev) => ((prev ?? 0) + 1));
             setWinReason('time');
             setTimeoutPlayer(player2Name ?? 'player_2');
-            resetGame();
         }
-    }, [winner, player2Name, setPlayer1Wins, setWinReason, setTimeoutPlayer, resetGame]);
+    }, [winner, player2Name, setPlayer1Wins]);
 
     const handleResetGame = useCallback(() => {
         resetGame();
         player1TimerRef.current?.reset();
         player2TimerRef.current?.reset();
         processedWinnerRef.current = null;
-
-        setTimeout(() => {
-            setWinReason('standart');
-            setTimeoutPlayer(null);
-        }, 100)
+        setWinReason('standart');
+        setTimeoutPlayer(null);
     }, [resetGame]);
-
-    const isModalOpen = !!winner || winReason === 'time';
 
     const getModalMessage = useCallback(() => {
         if (winReason === 'time' && timeoutPlayer) {
             const winnerName = timeoutPlayer === (player1Name ?? 'player_1')
                 ? (player2Name ?? 'player_2')
                 : (player1Name ?? 'player_1');
-            return t('Время вышло, победил: {{name}}!', { name: winnerName });
+            return <h2>{t('Время вышло, победил: {{name}}!', { name: winnerName })}</h2>;
         }
-        return t('Победитель: {{name}}!', { name: winner === 'onePlayer' ? (player1Name ?? '') : (player2Name ?? '') })
+        if (winner) {
+            return <h2>{t('Победитель: {{name}}!', {
+                name: winner === 'onePlayer' ? (player1Name ?? 'Игрок 1') : (player2Name ?? 'Игрок 2')
+            })}</h2>;
+        }
+        return null;
     }, [winReason, timeoutPlayer, player1Name, player2Name, t, winner]);
 
     const newGameButtonText = useMemo(() => t('Новая игра'), [t]);
     const settingsButtonText = useMemo(() => t('Настройки'), [t]);
-    const playAgainButtonText = useMemo(() => t('Начать игру'), [t]);
+
+    const showModal = winner !== null || isDraw || winReason === 'time';
 
     return (
         <div className={styles.gamePage}>
             <div className={styles.headerPage}>
                 <Link to="/">
-                    <Button
-                        className="secondary">
+                    <Button className="secondary">
                         {t('Назад')}
                     </Button>
                 </Link>
@@ -133,9 +133,7 @@ export const GamePage = () => {
                     {newGameButtonText}
                 </Button>
                 <Link to="/settings">
-                    <Button
-                        className="clear"
-                    >
+                    <Button className="clear">
                         {settingsButtonText}
                     </Button>
                 </Link>
@@ -143,7 +141,7 @@ export const GamePage = () => {
             <div className={styles.playerBlock}>
                 <Player
                     isActive={currentPlayer === 'onePlayer'}
-                    location={false} 
+                    location={false}
                     name={player1Name}
                     onNameChange={setPlayer1Name}
                     colorKey={player1ColorKey}
@@ -161,7 +159,7 @@ export const GamePage = () => {
                 </div>
                 <Player
                     isActive={currentPlayer === 'twoPlayer'}
-                    location={true} 
+                    location={true}
                     name={aiEnabled ? t('Компьютер') : player2Name}
                     onNameChange={aiEnabled ? undefined : setPlayer2Name}
                     colorKey={player2ColorKey}
@@ -183,22 +181,23 @@ export const GamePage = () => {
                 playerOneHex={playerOneHex}
                 playerTwoHex={playerTwoHex}
                 winningPositions={winningPositions}
+                isDraw={isDraw}
             />
-            <Modal
-                isOpen={isModalOpen}
-                onClose={handleResetGame}>
+
+
+            <Modal onClose={handleResetGame} isOpen={showModal}>
                 <div className={styles.winnerModal}>
-                    <div>
-                        {getModalMessage()}
-                    </div>
-                    <div style={{ marginTop: 12 }}>
-                        <Button
-                            className="primary"
-                            onClick={handleResetGame}
-                        >
-                            {playAgainButtonText}
-                        </Button>
-                    </div>
+                    {isDraw ? (
+                        <div>
+                            <p>{t('Ничья!')}</p>
+                            <p>{t('Все ячейки заполнены, победителя нет')}</p>
+                        </div>
+                    ) : (
+                        getModalMessage()
+                    )}
+                    <Button onClick={handleResetGame} className="primary">
+                        {t('Играть снова')}
+                    </Button>
                 </div>
             </Modal>
         </div>

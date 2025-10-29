@@ -61,10 +61,15 @@ function checkWinner(board: Board): { winner: Player | null; positions?: Positio
     return { winner: null };
 }
 
+function isBoardFull(board: Board): boolean {
+    return board[0].every(cell => cell !== null);
+}
+
 export function useConnectFour(aiEnabled: boolean = false, difficulty: Difficulty = 'medium') {
     const [board, setBoard] = useState<Board>(createEmptyBoard());
     const [currentPlayer, setCurrentPlayer] = useState<Player>('onePlayer');
     const [winner, setWinner] = useState<Player | null>(null);
+    const [isDraw, setIsDraw] = useState(false);
     const [winningPositions, setWinningPositions] = useState<Position[]>([]);
     
     const currentPlayerRef = useRef<Player>('onePlayer');
@@ -96,7 +101,10 @@ export function useConnectFour(aiEnabled: boolean = false, difficulty: Difficult
                     if (result.winner) {
                         setWinner(result.winner);
                         setWinningPositions(result.positions || []);
-                    } else {
+                    } else if (isBoardFull(newBoard)) {
+                        setIsDraw(true);
+                    }
+                    else {
                         setCurrentPlayer('onePlayer');
                     }
                     
@@ -111,7 +119,7 @@ export function useConnectFour(aiEnabled: boolean = false, difficulty: Difficult
     }, [difficulty]);
 
     const dropDisc = useCallback((col: number) => {
-        if (winner || aiThinkingRef.current) return;
+        if (winner || aiThinkingRef.current || isDraw) return;
         
         const player = currentPlayerRef.current;
         
@@ -129,7 +137,10 @@ export function useConnectFour(aiEnabled: boolean = false, difficulty: Difficult
                     if (result.winner) {
                         setWinner(result.winner);
                         setWinningPositions(result.positions || []);
-                    } else {
+                    } else if (isBoardFull(newBoard)) {
+                        setIsDraw(true);
+                    } 
+                    else {
                         const nextPlayer = player === "onePlayer" ? "twoPlayer" : "onePlayer";
                         setCurrentPlayer(nextPlayer);
                         
@@ -151,7 +162,7 @@ export function useConnectFour(aiEnabled: boolean = false, difficulty: Difficult
             
             return prevBoard;
         });
-    }, [winner, aiEnabled, makeAIMove]);
+    }, [winner, isDraw, aiEnabled, makeAIMove]);
 
     const resetGame = useCallback(() => {
         if (aiTimeoutRef.current !== null) {
@@ -163,6 +174,7 @@ export function useConnectFour(aiEnabled: boolean = false, difficulty: Difficult
         setBoard(createEmptyBoard());
         setCurrentPlayer("onePlayer");
         setWinner(null);
+        setIsDraw(false);
         setWinningPositions([]);
     }, []);
 
@@ -171,6 +183,7 @@ export function useConnectFour(aiEnabled: boolean = false, difficulty: Difficult
         currentPlayer,
         winner,
         winningPositions,
+        isDraw,
         dropDisc,
         resetGame,
     };

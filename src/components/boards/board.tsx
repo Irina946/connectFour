@@ -12,6 +12,7 @@ interface BoardProps {
     playerOneHex: string;
     playerTwoHex: string;
     winningPositions: number[][];
+    isDraw: boolean;
 }
 
 export const Board = memo((props: BoardProps) => {
@@ -22,12 +23,13 @@ export const Board = memo((props: BoardProps) => {
         currentPlayer,
         playerOneHex,
         playerTwoHex,
-        winningPositions
+        winningPositions,
+        isDraw
     } = props;
 
     const { theme } = useTheme();
-    const emptyBg = useMemo(() => 
-        theme === 'dark' ? '#777777' : '#ffffff', 
+    const emptyBg = useMemo(() =>
+        theme === 'dark' ? '#777777' : '#ffffff',
         [theme]
     );
 
@@ -38,9 +40,9 @@ export const Board = memo((props: BoardProps) => {
     const currentHex = currentPlayer === 'onePlayer' ? playerOneHex : playerTwoHex;
 
     const handleDrop = (colIdx: number) => {
-        if (!winner) {
-            dropDisc(colIdx);
-        }
+        if (winner || isDraw) return;
+        dropDisc(colIdx);
+
     };
 
     const handleMouseEnter = (colIdx: number) => {
@@ -89,7 +91,7 @@ export const Board = memo((props: BoardProps) => {
                             const isWinning = winningPositions?.some(
                                 ([r, c]) => r === rowIdx && c === colIdx
                             );
-                            
+
                             return (
                                 <ElementBoard
                                     key={`${rowIdx}-${colIdx}`}

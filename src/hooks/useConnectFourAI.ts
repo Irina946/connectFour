@@ -51,6 +51,7 @@ function getMediumMove(board: Board, player: Player, validMoves: number[]): numb
     return validMoves[0];
 }
 
+
 // Сложный уровень - Эвристический алгоритм с приоритетной оценкой позиций
 function getHardMoveAdvanced(board: Board, player: Player, validMoves: number[]): number {
     const opponent: Player = player === 'onePlayer' ? 'twoPlayer' : 'onePlayer';

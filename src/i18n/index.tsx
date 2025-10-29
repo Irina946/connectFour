@@ -9,7 +9,6 @@ i18n
     .use(initReactI18next)
     .init({
         fallbackLng: 'ru',
-        debug: import.meta.env.DEV,
         
         ns: ['translation', 'game', 'settings'],
         defaultNS: 'translation',
