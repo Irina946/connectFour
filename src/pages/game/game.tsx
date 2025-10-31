@@ -102,17 +102,17 @@ export const GamePage = () => {
     const getModalMessage = useCallback(() => {
         if (winReason === 'time' && timeoutPlayer) {
             const winnerName = timeoutPlayer === (player1Name ?? 'player_1')
-                ? (player2Name ?? 'player_2')
+                ? (aiEnabled ? t('Компьютер') : player2Name ?? 'player_2')
                 : (player1Name ?? 'player_1');
             return <h2>{t('Время вышло, победил: {{name}}!', { name: winnerName })}</h2>;
         }
         if (winner) {
             return <h2>{t('Победитель: {{name}}!', {
-                name: winner === 'onePlayer' ? (player1Name ?? 'Игрок 1') : (player2Name ?? 'Игрок 2')
+                name: winner === 'onePlayer' ? (player1Name ?? 'Игрок 1') : (aiEnabled ? t('Компьютер') : player2Name ?? 'Игрок 2')
             })}</h2>;
         }
         return null;
-    }, [winReason, timeoutPlayer, player1Name, player2Name, t, winner]);
+    }, [winReason, timeoutPlayer, winner, player1Name, aiEnabled, t, player2Name]);
 
     const newGameButtonText = useMemo(() => t('Новая игра'), [t]);
     const settingsButtonText = useMemo(() => t('Настройки'), [t]);

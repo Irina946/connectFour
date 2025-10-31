@@ -69,7 +69,7 @@ export const SettingsPage = () => {
     ], [t]);
 
     const aiDifficultyOptions = useMemo(() => [
-        { label: t('Легкий'), value: 'easy' },
+        { label: t('Легкий'), value: 'easy' },
         { label: t('Средний'), value: 'medium' },
         { label: t('Сложный'), value: 'hard' }
     ], [t]);

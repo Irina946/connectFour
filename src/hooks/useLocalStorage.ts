@@ -23,17 +23,13 @@ export function useLocalStorage<T>(key: string, initialValue?: T) {
     const [state, setState] = useState<T | undefined>(readValue);
     const prevKeyRef = useRef(key);
 
-    // update when key changes
     useEffect(() => {
         if (prevKeyRef.current !== key) {
-            // key changed: update state from new key
             setState(readValue());
             prevKeyRef.current = key;
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [key]);
 
-    // sync between tabs/windows
     useEffect(() => {
         if (!isBrowser) return;
         const handler = (e: StorageEvent) => {
@@ -41,7 +37,6 @@ export function useLocalStorage<T>(key: string, initialValue?: T) {
                 try {
                     setState(e.newValue ? (JSON.parse(e.newValue) as T) : undefined);
                 } catch (err) {
-                    // if parse fails, fallback to undefined
                     setState(undefined);
                 }
             }
