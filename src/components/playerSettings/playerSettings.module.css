@@ -1,0 +1,53 @@
+.playerSettings {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 330px;
+}
+
+.headerColor {
+    font: var(--font-l);
+}
+
+.trickList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    max-width: 280px;
+}
+
+.colorTile {
+    padding: 4px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.colorTile:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(0, 0, 0, 0.08);
+}
+
+.selected {
+    border-color: var(--secondary-color);
+}
+
+.disabled {
+    background: var(--bg-color-opacity);
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.note {
+    color: var(--text-secondary-color);
+    font-size: var(--font-size-s);
+}
+
+.active {
+    padding: var(--padding-board-s);
+    border-radius: 8px;
+    background: rgb(251,225,152,0.4);
+    box-shadow: 0 0 0 3px rgb(251,225,152,0.15);
+}

@@ -1,0 +1,10 @@
+.modalWinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--primary-color);
+  font: var(--font-xl);
+  font-weight: 700;
+  text-align: center;
+}

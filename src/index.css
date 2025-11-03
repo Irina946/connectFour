@@ -1,0 +1,29 @@
+@import url("./reset.css");
+@import url("./styles/variables/global.css");
+@import url("./styles/themes/dark.css");
+@import url("./styles/themes/normal.css");
+
+body {
+    font: var(--font-m);
+    color: var(--primary-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+    transition: background-color 0.3s ease;
+}
+
+.content-page {
+    display: flex;
+}
+
+.page-wrapper {
+    flex-grow: 1;
+    padding: 20px;
+}

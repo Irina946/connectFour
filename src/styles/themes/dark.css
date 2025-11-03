@@ -1,0 +1,10 @@
+.appDarkTheme {
+    --bg-color: #0C1214;
+    --inverted-bg-color: #08181f;
+    --bg-board-color: #0d2833;
+    --primary-color: #DBDBDB;
+    --secondary-color: #555;
+    --text-primary-color: #a39f9f;
+    --text-secondary-color: #AAA;
+    --bg-color-opacity: rgb(131, 129, 164, 0.75);
+}

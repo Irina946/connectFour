@@ -1,0 +1,66 @@
+:root {
+    --font-family-main: consolas, 'Times New Roman', times, serif;
+    --font-size-s: 14px;
+    --font-line-s: 22px;
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+    --font-size-m: 16px;
+    --font-line-m: 24px;
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+    --font-size-l: 24px;
+    --font-line-l: 32px;
+    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+    --font-size-xl: 32px;
+    --font-line-xl: 40px;
+    --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+    --font-size-2xl: 40px;
+    --font-line-2xl: 48px;
+    --font-2xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+
+
+    /* Цвета (по умолчанию светлая тема) */
+    --bg-color: #F5F2E8;
+    --bg-board-color: #FBE198;
+    --primary-color: #f1ce6d;
+    --secondary-color: #d9a73c;
+    --text-primary-color: #333;
+    --text-secondary-color: #777;
+    --bg-color-opacity: rgb(119, 119, 119, 0.75);
+    --bg-trick-color-red: #F84D4D;
+    --bg-trick-color-yellow: #f8f04d;
+    --bg-trick-color-green: #4DF84D;
+    --bg-trick-color-blue: #4DF8F8;
+    --bg-trick-color-cyan: #4DF8B8;
+    --bg-trick-color-purple: #f84df2;
+    --bg-trick-color-orange: #f7b11a;
+    --bg-trick-color-purple-deep: #8A2BE2;
+    --bg-trick-color-pink: #FF1493;
+    --bg-trick-color-brown: #A0522D;
+    --bg-trick-color-teal: #008080;
+    --bg-trick-color-burgundy: #800020;
+    --bg-trick-color-black: #000;
+
+    /* Индексы слоев */
+    --modal-z-index: 10;
+
+    /* Размеры фишек */
+    --chip-size-xs: 24px;
+    --chip-size-s: 48px;
+    --chip-size-m: 64px;
+    --chip-size-l: 80px;
+    --chip-size-xl: 96px;
+
+    /* Padding и margin */
+    --padding-board-s: 8px;
+    --padding-board-m: 12px;
+    --padding-board-l: 16px;
+    --padding-board-xl: 20px;
+
+    /* Размер кнопки */
+    --button-size-xs: 64px;
+    --button-size-s: 120px;
+    --button-size-m: 160px;
+    --button-size-l: 200px;
+    --button-size-xl: 240px;
+
+}

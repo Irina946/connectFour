@@ -1,0 +1,47 @@
+.modal {
+	position: fixed;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	inset: 0;
+}
+
+.overlay {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgb(0, 0, 0, 0.5);
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
+	inset: 0;
+}
+
+.content {
+	position: relative;
+	min-width: 280px;
+	max-width: 90%;
+	padding: 16px;
+	border-radius: 8px;
+	background: var(--bg-color);
+	opacity: 0;
+	transform: translateY(-8px) scale(0.98);
+	transition: transform 300ms ease, opacity 300ms ease;
+	box-shadow: 0 8px 24px rgb(0,0,0,0.2);
+}
+
+.closing {
+	opacity: 0;
+	transition: opacity 300ms ease-in;
+}
+
+.open .overlay {
+    opacity: 1;
+}
+
+.open .content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+

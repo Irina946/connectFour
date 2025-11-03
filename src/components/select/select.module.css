@@ -1,0 +1,59 @@
+.selectBlock {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    width: 500px;
+}
+
+.selectLabel {
+    color: var(--secondary-color);
+    font: var(--font-l);
+    font-weight: 600;
+}
+
+.select {
+    width: 220px;
+    padding: 8px 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+    background: var(--bg-color);
+    color: var(--text-primary-color);
+    appearance: none;
+}
+
+.selectOption {
+    background: var(--bg-color);
+    color: inherit;
+    font: inherit;
+
+}
+
+.selectBlock::after {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    width: 0;
+    height: 0;
+    transform: translateY(-50%);
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--secondary-color);
+    pointer-events: none;
+}
+
+.selectOption:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.selectOption:checked,
+.selectOption[selected] {
+    background: var(--primary-color);
+    color: var(--text-primary-color);
+}
+
+.select:hover {
+    border-color: var(--primary-color);
+}

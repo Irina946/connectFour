@@ -1,0 +1,17 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    height: 100vh;
+    color: var(--primary-color);
+
+    font: var(--font-xl);
+}
+
+.mainHeader {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 16px;
+    font-weight: 900;
+}

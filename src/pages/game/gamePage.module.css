@@ -1,0 +1,33 @@
+.gamePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 48px;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.playerBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: -20px;
+}
+
+.headerPage {
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    background: transparent;
+}
+
+.vsText {
+    color: var(--secondary-color);
+    font: var(--font-xl);
+    font-weight: 600;
+}

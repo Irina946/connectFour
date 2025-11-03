@@ -1,0 +1,138 @@
+.boardWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.arrowRow {
+    display: grid;
+    gap: var(--padding-board-s);
+    width: calc(var(--chip-size-m) * 7 + var(--padding-board-s) * 8);
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 6px;
+    pointer-events: none;
+}
+
+.arrowSlot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    pointer-events: auto;
+}
+
+.board {
+    display: grid;
+    place-items: center center;
+    gap: var(--padding-board-s);
+    width: calc(var(--chip-size-m) * 7 + var(--padding-board-s) * 8);
+    height: calc(var(--chip-size-m) * 6 + var(--padding-board-s) * 7);
+    padding: var(--padding-board-s);
+    border-radius: 16px;
+    background-color: var(--bg-board-color);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.elementBoard {
+    position: relative;
+    width: var(--chip-size-m);
+    height: var(--chip-size-m);
+    border: 2px solid var(--bg-board-color);
+    border-radius: 100%;
+    overflow: hidden;
+    transition: background-color 0.1s ease;
+    background-color: var(--bg-color);
+}
+
+.column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-board-s); 
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    rotate: 180deg;
+    border-bottom: 12px solid #000; 
+    transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.winning {
+    position: relative;
+    z-index: 10;
+    animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px 5px var(--glow-color),
+            0 0 40px 10px var(--glow-color),
+            inset 0 0 15px rgb(255, 255, 255, 0.4);
+        filter: brightness(1.2);
+    }
+
+    50% {
+        box-shadow: 
+            0 0 35px 10px var(--glow-color),
+            0 0 70px 20px var(--glow-color),
+            inset 0 0 20px rgb(255, 255, 255, 0.6);
+        filter: brightness(1.5);
+    }
+}
+
+
+.fillAnimation::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--final-color);
+    animation: fillFromTop 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    content: '';
+}
+
+@keyframes fillFromTop {
+    0% {
+        clip-path: ellipse(50% 0% at 50% 0%);
+        opacity: 1;
+    }
+
+    99% {
+        clip-path: ellipse(50% 50% at 50% 50%);
+        opacity: 1;
+    }
+
+    100% {
+        clip-path: ellipse(50% 50% at 50% 50%);
+        opacity: 0; 
+    }
+}
+
+.fillAnimation {
+    animation: showFinalColor 0.5s forwards;
+}
+
+@keyframes showFinalColor {
+    0% {
+        background: var(--empty-color);
+    }
+
+    90% {
+        background: var(--empty-color);
+    }
+
+    100% {
+        background: var(--final-color);
+    }
+}

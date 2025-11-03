@@ -1,0 +1,30 @@
+.hidden {
+    display: none;
+}
+
+.checkboxBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary-color);
+    font: var(--font-l);
+    font-weight: 500;
+}
+
+.checkbox {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--secondary-color);
+    cursor: pointer;
+    background-color: #ffffff;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.checked {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    background-color: var(--secondary-color);
+}
