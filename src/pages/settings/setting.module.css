@@ -20,7 +20,6 @@
     gap: 12px;
 }
 
-/* Ensure headings inside player settings match the interface settings header */
 .playerSetting h3 {
     font: var(--font-l);
     margin: 0;
